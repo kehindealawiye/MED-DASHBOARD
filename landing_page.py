@@ -1,8 +1,9 @@
 import streamlit as st
+import os
 
 st.set_page_config(page_title="M&E Dashboard Hub", layout="wide")
 
-# === Background Overlay and Logo ===
+# === Page Styling and Logo Overlay ===
 st.markdown("""
     <style>
     .stApp {
@@ -23,6 +24,9 @@ st.markdown("""
     h1, h2, h3, h4, h5, h6, p, div, span {
         color: white !important;
     }
+    .block-container {
+        padding-top: 6rem;
+    }
     </style>
     <img src="logo.png" class="logo-overlay">
 """, unsafe_allow_html=True)
@@ -34,36 +38,36 @@ tab1, tab2, tab3 = st.tabs(["🏠 Home", "📊 Dashboards", "ℹ️ About"])
 with tab1:
     st.title("📊 Monitoring & Evaluation Dashboard Suite")
     st.subheader("Empowering Data-Driven Governance with Real-Time Insights")
-
     st.markdown("""
-    Welcome to the official dashboard hub of the **Monitoring and Evaluation Department**,  
-    **Ministry of Economic Planning and Budget**.
+        Welcome to the official dashboard hub of the **Monitoring and Evaluation Department**,  
+        **Ministry of Economic Planning and Budget**.
 
-    This hub provides real-time access to insights on government projects — from performance tracking to certification for payments.
+        This hub provides real-time access to insights on government projects — from performance tracking to certification for payments.
     """)
 
 # === Dashboards Tab ===
 with tab2:
     st.markdown("## 📈 Available Dashboards")
-    st.markdown("Explore the dashboards below:")
+    
+    # Check image presence (for debugging)
+    if os.path.exists("pmr_preview.jpg"):
+        col1, col2 = st.columns(2)
 
-    col1, col2 = st.columns(2)
+        with col1:
+            st.image("pmr_preview.jpg", caption="📊 Performance Management Report (PMR) Dashboard", use_container_width=True)
+            st.markdown("🔗 [Launch PMR Dashboard](https://pmr-app.streamlit.app/)", unsafe_allow_html=True)
 
-    with col1:
-        st.image("pmr_preview.jpg",caption="📊 Performance Management Report (PMR) Dashboard", use_container_width=True)
-        st.markdown("🔗 [Launch PMR Dashboard](https://pmr-app.streamlit.app/)", unsafe_allow_html=True)
-
-    with col2:
-        st.image("cert_preview.jpg", caption="✅ Prepayment Certification Insights Dashboard", use_container_width=True)
-        st.markdown("🔗 [Launch Certification Dashboard](https://med-data.streamlit.app/)", unsafe_allow_html=True)
+        with col2:
+            st.image("cert_preview.jpg", caption="✅ Prepayment Certification Insights Dashboard", use_container_width=True)
+            st.markdown("🔗 [Launch Certification Dashboard](https://med-data.streamlit.app/)", unsafe_allow_html=True)
+    else:
+        st.error("Preview images not found. Please confirm pmr_preview.jpg and cert_preview.jpg exist in the same folder.")
 
 # === About Tab ===
 with tab3:
     st.markdown("## ℹ️ About the Dashboards")
     st.markdown("""
     ### 🏛️ Department Overview
-    The **Monitoring and Evaluation Department (MED)** operates as a pivotal unit within the Ministry of Economic Planning and Budget (MEPB), Lagos State. 
-    Its existence is anchored in the need to institutionalize performance tracking, ensure evidence-based decision-making, and monitor the implementation and impact of Government Programs and Projects across the State.
     The **Monitoring and Evaluation Department** ensures strategic project oversight across Lagos State, focusing on:
     - Timely inspection of capital projects
     - Evaluation of outcomes
@@ -82,8 +86,8 @@ with tab3:
     - Inspection outcomes
     - Certification history by MDA and sector
 
-    ### 📈 Why This Matters
-    Data-driven M&E enhances transparency, ensures accountability, and supports planning that delivers impact to citizens.
+    ### 🎯 Purpose
+    These tools enhance transparency, accountability, and strategic decision-making across all government project workflows.
     """)
 
 st.markdown("---")
