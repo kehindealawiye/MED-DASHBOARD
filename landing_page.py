@@ -3,7 +3,7 @@ import os
 
 st.set_page_config(page_title="M&E Dashboard Hub", layout="wide")
 
-# === Styling and Logo ===
+# === Page Styling and Logo Overlay ===
 st.markdown("""
     <style>
     .stApp {
@@ -48,34 +48,20 @@ with tab1:
 # === Dashboards Tab ===
 with tab2:
     st.markdown("## 📈 Available Dashboards")
-
-    # === Debug file listing ===
-    st.markdown("### 🔍 Debug: Available Files in Directory")
-    for file in os.listdir():
-        st.markdown(f"- `{file}`")
-
-    # === Safe image loading with feedback ===
-    try:
+    
+    # Check image presence (for debugging)
+    if os.path.exists("pmr_preview.jpg"):
         col1, col2 = st.columns(2)
 
         with col1:
-            if os.path.exists("pmr_preview.jpg"):
-                st.success("✅ pmr_preview.jpg found")
-                st.image("pmr_preview.jpg", caption="📊 Performance Management Report (PMR) Dashboard", use_container_width=True)
-                st.markdown("🔗 [Launch PMR Dashboard](https://pmr-app.streamlit.app/)", unsafe_allow_html=True)
-            else:
-                st.error("❌ pmr_preview.jpg not found")
+            st.image("pmr_preview.jpg", caption="📊 Performance Management Report (PMR) Dashboard", use_column_width=True)
+            st.markdown("🔗 [Launch PMR Dashboard](https://pmr-app.streamlit.app/)", unsafe_allow_html=True)
 
         with col2:
-            if os.path.exists("cert_preview.jpg"):
-                st.success("✅ cert_preview.jpg found")
-                st.image("cert_preview.jpg", caption="✅ Prepayment Certification Insights Dashboard", use_container_width=True)
-                st.markdown("🔗 [Launch Certification Dashboard](https://med-data.streamlit.app/)", unsafe_allow_html=True)
-            else:
-                st.error("❌ cert_preview.jpg not found")
-
-    except Exception as e:
-        st.error(f"❗ Error while loading dashboard previews: {e}")
+            st.image("cert_preview.jpg", caption="✅ Prepayment Certification Insights Dashboard", use_column_width=True)
+            st.markdown("🔗 [Launch Certification Dashboard](https://med-data.streamlit.app/)", unsafe_allow_html=True)
+    else:
+        st.error("Preview images not found. Please confirm pmr_preview.jpg and cert_preview.jpg exist in the same folder.")
 
 # === About Tab ===
 with tab3:
