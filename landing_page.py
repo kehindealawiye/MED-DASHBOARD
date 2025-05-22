@@ -50,11 +50,11 @@ with tab2:
     col1, col2 = st.columns(2)
 
     with col1:
-        st.image("pmr_preview.png", caption="📊 Performance Management Report (PMR) Dashboard", use_container_width=True)
+        st.image("pmr_preview.jpg", caption="📊 Performance Management Report (PMR) Dashboard", use_container_width=True)
         st.markdown("🔗 [Launch PMR Dashboard](https://pmr-app.streamlit.app/)", unsafe_allow_html=True)
 
     with col2:
-        st.image("cert_preview.png", caption="✅ Prepayment Certification Insights Dashboard", use_container_width=True)
+        st.image("cert_preview.jpg", caption="✅ Prepayment Certification Insights Dashboard", use_container_width=True)
         st.markdown("🔗 [Launch Certification Dashboard](https://med-data.streamlit.app/)", unsafe_allow_html=True)
 
 # === About Tab ===
