@@ -1,67 +1,90 @@
-
 import streamlit as st
 
-# Inject custom background and logo
+st.set_page_config(page_title="M&E Dashboard Hub", layout="wide")
+
+# === Background Overlay and Logo ===
 st.markdown("""
     <style>
-    .stApp {{
-        background-image: url("background.jpg");
+    .stApp {
+        background-image: linear-gradient(rgba(0,0,50,0.85), rgba(0,0,50,0.85)), url("background.jpg");
         background-size: cover;
         background-position: center;
-        color: white;
-    }}
-    .logo-overlay {{
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        font-family: 'Segoe UI', sans-serif;
+    }
+    .logo-overlay {
         position: fixed;
         top: 10px;
         left: 10px;
         width: 60px;
         z-index: 100;
-    }}
+    }
+    h1, h2, h3, h4, h5, h6, p, div, span {
+        color: white !important;
+    }
     </style>
     <img src="logo.png" class="logo-overlay">
 """, unsafe_allow_html=True)
 
-st.title("📊 Monitoring & Evaluation Dashboard Suite")
-st.subheader("Insightful Dashboards for Data-Driven Governance")
+# === Tabs ===
+tab1, tab2, tab3 = st.tabs(["🏠 Home", "📊 Dashboards", "ℹ️ About"])
 
-st.markdown("""
-Welcome to the official dashboard hub of the **Monitoring and Evaluation Department**,  
-**Ministry of Economic Planning and Budget**.
+# === Home Tab ===
+with tab1:
+    st.title("📊 Monitoring & Evaluation Dashboard Suite")
+    st.subheader("Empowering Data-Driven Governance with Real-Time Insights")
 
-These tools enable real-time tracking, analysis, and reporting on government programmes, projects, and payment certifications — ensuring transparency, performance, and value for public investments.
-""")
+    st.markdown("""
+    Welcome to the official dashboard hub of the **Monitoring and Evaluation Department**,  
+    **Ministry of Economic Planning and Budget**.
 
-st.markdown("### 🚀 Available Dashboards")
+    This hub provides real-time access to insights on government projects — from performance tracking to certification for payments.
+    """)
 
-col1, col2 = st.columns(2)
+# === Dashboards Tab ===
+with tab2:
+    st.markdown("## 📈 Available Dashboards")
+    st.markdown("Explore the dashboards below:")
 
-with col1:
-    st.image("background.jpg", caption="Performance Management Dashboard", use_column_width=True)
-    st.markdown("🔗 [Open PMR Dashboard](https://pmr-app.streamlit.app/)", unsafe_allow_html=True)
+    col1, col2 = st.columns(2)
 
-with col2:
-    st.image("background.jpg", caption="Medical Programme Data Analyzer", use_column_width=True)
-    st.markdown("🔗 [Open Medical Data Analyzer](https://med-data.streamlit.app/)", unsafe_allow_html=True)
+    with col1:
+        st.image("background.jpg", caption="📊 Performance Management Report (PMR) Dashboard", use_container_width=True)
+        st.markdown("🔗 [Launch PMR Dashboard](https://pmr-app.streamlit.app/)", unsafe_allow_html=True)
 
-st.markdown("### 📌 About the Tools")
+    with col2:
+        st.image("background.jpg", caption="✅ Prepayment Certification Insights Dashboard", use_container_width=True)
+        st.markdown("🔗 [Launch Certification Dashboard](https://med-data.streamlit.app/)", unsafe_allow_html=True)
 
-st.markdown("""
-#### 1. **Performance Management Report (PMR) Dashboard**
-This dashboard tracks programme and project performance across Ministries, Departments, and Agencies (MDAs), presenting:
-- Real-time performance metrics
-- Budget utilization insights
-- Sector-based drilldowns
-- Export-ready reports for policy and review meetings
+# === About Tab ===
+with tab3:
+    st.markdown("## ℹ️ About the Dashboards")
+    st.markdown("""
+    ### 🏛️ Department Overview
+    The **Monitoring and Evaluation Department (MED)** operates as a pivotal unit within the Ministry of Economic Planning and Budget (MEPB), Lagos State. 
+    Its existence is anchored in the need to institutionalize performance tracking, ensure evidence-based decision-making, and monitor the implementation and impact of Government Programs and Projects across the State.
+    The **Monitoring and Evaluation Department** ensures strategic project oversight across Lagos State, focusing on:
+    - Timely inspection of capital projects
+    - Evaluation of outcomes
+    - Transparent certification processes
 
-#### 2. **Medical Data Analyzer**
-An AI-powered dashboard for analysing health survey data:
-- Generates charts, summaries, and trends from raw medical field data
-- Supports decision-making in public health planning
-- Includes built-in statistical tests and interpretation
-""")
+    ### 📊 Performance Management Report (PMR) Dashboard
+    This dashboard tracks:
+    - Programme and project output across MDAs
+    - Sector-based trends
+    - Budget and performance summaries
+    - Export-ready reports
 
-st.markdown("### 📬 Need Support or Custom Access?")
-st.markdown("If you require tailored access or improvements, reach out to the M&E Tech Team at **meplanning@lagosstate.gov.ng**.")
+    ### ✅ Prepayment Certification Dashboard
+    This dashboard analyzes:
+    - All capital projects approved for payment
+    - Inspection outcomes
+    - Certification history by MDA and sector
+
+    ### 📈 Why This Matters
+    Data-driven M&E enhances transparency, ensures accountability, and supports planning that delivers impact to citizens.
+    """)
 
 st.markdown("---")
 st.caption("© 2025 Monitoring and Evaluation Department, Ministry of Economic Planning and Budget | Powered by Streamlit")
