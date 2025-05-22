@@ -50,7 +50,7 @@ with tab2:
     col1, col2 = st.columns(2)
 
     with col1:
-        st.image("pmr_review.jpg", caption="📊 Performance Management Report (PMR) Dashboard", use_container_width=True)
+        st.image("pmr_preview.jpg",caption="📊 Performance Management Report (PMR) Dashboard", use_container_width=True)
         st.markdown("🔗 [Launch PMR Dashboard](https://pmr-app.streamlit.app/)", unsafe_allow_html=True)
 
     with col2:
