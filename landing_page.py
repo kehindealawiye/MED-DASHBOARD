@@ -4,17 +4,6 @@ import shutil
 import base64
 from PIL import Image
 
-# Recreate directory
-os.makedirs("/mnt/data/landing_page_root", exist_ok=True)
-
-# Restore image files
-logo_path = "/mnt/data/logo.png"
-background_path = "/mnt/data/background.jpg"
-
-# Copy images to the project root
-shutil.copy(logo_path, "/mnt/data/landing_page_root/logo.png")
-shutil.copy(background_path, "/mnt/data/landing_page_root/background.jpg")
-
 # Encode logo as base64
 with open(logo_path, "rb") as img_file:
     logo_base64 = base64.b64encode(img_file.read()).decode("utf-8")
