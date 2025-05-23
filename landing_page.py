@@ -19,13 +19,10 @@ shutil.copy(background_path, "/mnt/data/landing_page_root/background.jpg")
 with open(logo_path, "rb") as img_file:
     logo_base64 = base64.b64encode(img_file.read()).decode("utf-8")
 
-# Final landing page code with embedded base64 logo
-final_landing_page_code = f"""
-
+# === Streamlit App ===
 st.set_page_config(page_title="M&E Dashboard Hub", layout="wide")
 
 # === Page Styling and Logo Overlay ===
-# Inject background and base64 logo
 st.markdown(f"""
     <style>
     .stApp {{
@@ -70,17 +67,17 @@ with tab1:
 # === Dashboards Tab ===
 with tab2:
     st.markdown("## 📈 Available Dashboards")
-    
+
     # Check image presence (for debugging)
-    if os.path.exists("pmr_preview.jpg"):
+    if os.path.exists("pmr_preview.jpg") and os.path.exists("cert_preview.jpg"):
         col1, col2 = st.columns(2)
 
         with col1:
-            st.image("pmr_preview.jpg", caption="📊 Performance Management Report (PMR) Dashboard", use_column_width=True)
+            st.image("pmr_preview.jpg", caption="📊 Performance Management Report (PMR) Dashboard", use_container_width=True)
             st.markdown("🔗 [Launch PMR Dashboard](https://pmr-app.streamlit.app/)", unsafe_allow_html=True)
 
         with col2:
-            st.image("cert_preview.jpg", caption="✅ Prepayment Certification Insights Dashboard", use_column_width=True)
+            st.image("cert_preview.jpg", caption="✅ Prepayment Certification Insights Dashboard", use_container_width=True)
             st.markdown("🔗 [Launch Certification Dashboard](https://med-data.streamlit.app/)", unsafe_allow_html=True)
     else:
         st.error("Preview images not found. Please confirm pmr_preview.jpg and cert_preview.jpg exist in the same folder.")
@@ -91,26 +88,27 @@ with tab3:
     st.markdown("""
     ### 🏛️ Department Overview
     The **Monitoring and Evaluation Department** ensures strategic project oversight across Lagos State, focusing on:
-    - Timely inspection of capital projects
-    - Evaluation of outcomes
-    - Transparent certification processes
+    - Timely inspection of capital projects  
+    - Evaluation of outcomes  
+    - Transparent certification processes  
 
     ### 📊 Performance Management Report (PMR) Dashboard
     This dashboard tracks:
-    - Programme and project output across MDAs
-    - Sector-based trends
-    - Budget and performance summaries
-    - Export-ready reports
+    - Programme and project output across MDAs  
+    - Sector-based trends  
+    - Budget and performance summaries  
+    - Export-ready reports  
 
     ### ✅ Prepayment Certification Dashboard
     This dashboard analyzes:
-    - All capital projects approved for payment
-    - Inspection outcomes
-    - Certification history by MDA and sector
+    - All capital projects approved for payment  
+    - Inspection outcomes  
+    - Certification history by MDA and sector  
 
     ### 🎯 Purpose
     These tools enhance transparency, accountability, and strategic decision-making across all government project workflows.
     """)
 
+# === Footer ===
 st.markdown("---")
 st.caption("© 2025 Monitoring and Evaluation Department, Ministry of Economic Planning and Budget | Powered by Streamlit")
