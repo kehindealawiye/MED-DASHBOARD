@@ -1,17 +1,15 @@
 import streamlit as st
-import os
-import shutil
 import base64
-from PIL import Image
+import os
 
-# Encode logo as base64
-with open(logo_png, "rb") as img_file:
+# === Encode logo as base64 ===
+with open("logo.png", "rb") as img_file:
     logo_base64 = base64.b64encode(img_file.read()).decode("utf-8")
 
-# === Streamlit App ===
+# === Streamlit App Config ===
 st.set_page_config(page_title="M&E Dashboard Hub", layout="wide")
 
-# === Page Styling and Logo Overlay ===
+# === Styling and Logo Overlay ===
 st.markdown(f"""
     <style>
     .stApp {{
@@ -57,7 +55,6 @@ with tab1:
 with tab2:
     st.markdown("## 📈 Available Dashboards")
 
-    # Check image presence (for debugging)
     if os.path.exists("pmr_preview.jpg") and os.path.exists("cert_preview.jpg"):
         col1, col2 = st.columns(2)
 
@@ -69,7 +66,7 @@ with tab2:
             st.image("cert_preview.jpg", caption="✅ Prepayment Certification Insights Dashboard", use_container_width=True)
             st.markdown("🔗 [Launch Certification Dashboard](https://med-data.streamlit.app/)", unsafe_allow_html=True)
     else:
-        st.error("Preview images not found. Please confirm pmr_preview.jpg and cert_preview.jpg exist in the same folder.")
+        st.error("Preview images not found. Please confirm `pmr_preview.jpg` and `cert_preview.jpg` exist in the same folder.")
 
 # === About Tab ===
 with tab3:
