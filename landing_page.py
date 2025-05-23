@@ -1,34 +1,56 @@
 import streamlit as st
 import os
+import shutil
+import base64
+from PIL import Image
+
+# Recreate directory
+os.makedirs("/mnt/data/landing_page_root", exist_ok=True)
+
+# Restore image files
+logo_path = "/mnt/data/logo.png"
+background_path = "/mnt/data/background.jpg"
+
+# Copy images to the project root
+shutil.copy(logo_path, "/mnt/data/landing_page_root/logo.png")
+shutil.copy(background_path, "/mnt/data/landing_page_root/background.jpg")
+
+# Encode logo as base64
+with open(logo_path, "rb") as img_file:
+    logo_base64 = base64.b64encode(img_file.read()).decode("utf-8")
+
+# Final landing page code with embedded base64 logo
+final_landing_page_code = f"""
 
 st.set_page_config(page_title="M&E Dashboard Hub", layout="wide")
 
 # === Page Styling and Logo Overlay ===
-st.markdown("""
+# Inject background and base64 logo
+st.markdown(f"""
     <style>
-    .stApp {
+    .stApp {{
         background-image: linear-gradient(rgba(0,0,50,0.85), rgba(0,0,50,0.85)), url("background.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
         background-attachment: fixed;
         font-family: 'Segoe UI', sans-serif;
-    }
-    .logo-overlay {
+    }}
+    .logo-overlay {{
         position: fixed;
         top: 10px;
         left: 10px;
         width: 60px;
         z-index: 100;
-    }
-    h1, h2, h3, h4, h5, h6, p, div, span {
+    }}
+    h1, h2, h3, h4, h5, h6, p, div, span {{
         color: white !important;
-    }
-    .block-container {
+    }}
+    .block-container {{
         padding-top: 6rem;
-    }
+    }}
     </style>
-    <img src="logo.png" class="logo-overlay">
+    <img src="data:image/png;base64,{logo_base64}" class="logo-overlay">
 """, unsafe_allow_html=True)
 
 # === Tabs ===
