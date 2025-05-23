@@ -22,7 +22,7 @@ st.markdown(f"""
     }}
     .logo-overlay {{
         position: fixed;
-        top: 10px;
+        top: 60px;
         left: 10px;
         width: 60px;
         z-index: 100;
