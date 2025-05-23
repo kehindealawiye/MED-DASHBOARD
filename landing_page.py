@@ -74,6 +74,7 @@ with tab3:
     st.markdown("""
     ### 🏛️ Department Overview
     The **Monitoring and Evaluation Department** ensures strategic project oversight across Lagos State, focusing on:
+    - Performance Management on Government Programmes and Projects based on Output Performance, Budget Performance, Timeliness and Quality of Execution of these projects
     - Timely inspection of capital projects  
     - Evaluation of outcomes  
     - Transparent certification processes  
