@@ -5,7 +5,7 @@ import base64
 from PIL import Image
 
 # Encode logo as base64
-with open(logo_path, "rb") as img_file:
+with open(logo_png, "rb") as img_file:
     logo_base64 = base64.b64encode(img_file.read()).decode("utf-8")
 
 # === Streamlit App ===
